@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,12 +77,7 @@
 </div>
 </footer>
 </main>
-// This is a single-line comment
-
-# This is also a single-line comment
-
-/* This is a
-multi-line comment */
+//Hello there
 </body>
 </html>
 <script src="js/script.js" defer></script>
