@@ -11,7 +11,7 @@ class Guests extends BaseController
     {
         $model = model(GuestModel::class);
 
-
+        
         $data = [
             'guests'  => $model->getGuests(),
             'title' => 'Guest List',
@@ -19,7 +19,7 @@ class Guests extends BaseController
 
         return view('templates/guestheader', $data)
             . view('guests/index')
-            . view('templates/guestfooter');
+            . view('templates/guestfooter');		
 
 
     }
@@ -49,6 +49,7 @@ public function new()
             . view('guests/create')
             . view('templates/guestfooter');
     }
+
     public function create()
     {
         helper('form');
