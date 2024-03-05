@@ -42,4 +42,50 @@ class Guests extends BaseController
     }		
 
 
+public function new()
+    {
+        helper('form');
+
+        return view('templates/guestheader', ['title' => 'Create a guest item'])
+            . view('guests/create')
+            . view('templates/guestfooter');
+    }
+public function create()
+    {
+        helper('form');
+
+        $data = $this->request->getPost(['name', 'email', 'comment']);
+
+        // Checks whether the submitted data passed the validation rules.
+        if (! $this->validateData($data, [
+            'name' => 'required|max_length[255]|min_length[3]',
+            'email'  => 'required|max_length[255]|min_length[5]',
+            'comment'  => 'required|max_length[5500]|min_length[10]',
+
+        ])) {
+            // The validation fails, so returns the form.
+            return $this->new();
+        }
+
+        // Gets the validated data.
+        $post = $this->validator->getValidated();
+
+        $model = model(GuestModel::class);
+
+        $model->save([
+            'name' => $post['name'],
+            'email'  => $post['email'],
+            'comment'  => $post['comment'],
+
+
+        ]);
+
+        return view('templates/guestheader', ['title' => 'Create a guest item'])
+            . view('guests/success')
+            . view('templates/guestfooter');
+    }
+
+
+
+
 }
